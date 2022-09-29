@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Bootcamp;
-//200 actualizar, listar
-//201 crear
-
-class BootcampController extends Controller
+use App\Models\course;
+class courseController extends Controller
 {
-    /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,7 +16,7 @@ class BootcampController extends Controller
        /* echo "aqui se van a mostrar  todos los bootcamps";*/
         return response()->json([
                                      "success"=>true,
-                                     "data" => Bootcamp::all()
+                                     "data" => course::all()
                                     ], 200);
     }
 
@@ -37,7 +34,7 @@ class BootcampController extends Controller
         //guardar un nuevo bootcamp
         return response()->json([
                                 "success"=> true,
-                                "data" => Bootcamp::create($request->all())
+                                "data" => course::create($request->all())
                                 ], 201);
 
         
@@ -53,9 +50,9 @@ class BootcampController extends Controller
     {
         return response()->json([
                                 "success"=> true,
-                                "data" => Bootcamp::find($id)
+                                "data" => course::find($id)
                                 ], 200);
-        return Bootcamp::find($id);
+        return course::find($id);
        /* echo "aqui se va a mostra el bootcamp cuyo id es $id";*/
      
     }
@@ -71,7 +68,7 @@ class BootcampController extends Controller
     {
        // echo "aqui se va a actualizar un bootcamp cuyo id es $id";
        //1. SSeleccionar el bootcamp a actualizar
-       $b = Bootcamp::find($id);
+       $b = course::find($id);
        //2. Actualizar bootcamp
        $b->update($request->all());
        //3. Enviar el bootcamp actualizado
@@ -91,7 +88,7 @@ class BootcampController extends Controller
     public function destroy($id)
     {
         //echo "aqui se va a eliminar el bootcamp cuyo id es $id";
-        $b = Bootcamp::find($id);
+        $b = course::find($id);
         $b->delete();
         return response()->json([
                                 "success"=> true,
@@ -100,5 +97,3 @@ class BootcampController extends Controller
 
     }
 }
-
-
